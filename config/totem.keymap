@@ -151,7 +151,37 @@ ZMK_BEHAVIOR(dot_morph, mod_morph,
     ___     ___          ___          ___             &kp HYP        ___                ___           ___               ___             ___           ___             ___
                                       ___             ___             ___                ___           ___               &kp C_MUTE
             >;
-        };  
+        };
+        extra_layer_1 {
+            status = "reserved";
+            bindings = 
+            &none &none &none &none &none              &none &none &none &none &none
+            &none &none &none &none &none              &none &none &none &none &none
+    &none   &none &none &none &none &none              &none &none &none &none &none &none
+                          &none &none &none             &none &none &none
+            >;
+        };
+        extra_layer_2 {
+            status = "reserved";
+            bindings = 
+            &none &none &none &none &none              &none &none &none &none &none
+            &none &none &none &none &none              &none &none &none &none &none
+    &none   &none &none &none &none &none              &none &none &none &none &none &none
+                          &none &none &none             &none &none &none
+            >;
+        };
+
+        extra_layer_3 {
+            status = "reserved";
+            bindings = 
+            &none &none &none &none &none              &none &none &none &none &none
+            &none &none &none &none &none              &none &none &none &none &none
+    &none   &none &none &none &none &none              &none &none &none &none &none &none
+                          &none &none &none             &none &none &none
+            >;
+        };
+
+
     };
 };
     
