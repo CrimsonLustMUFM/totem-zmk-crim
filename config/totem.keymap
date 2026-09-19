@@ -16,6 +16,7 @@
 #define NUM 2
 #define FUN 3
 #define UTIL 4
+#define GAME 5
 
 #include "combos.dtsi"
 
@@ -97,93 +98,141 @@ ZMK_BEHAVIOR(dot_morph, mod_morph,
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
+
+// Layer bindings reconstructed from the saved Studio capture.
+// Behavior definitions and combos are retained from the dongle branch.
 / {
-// TODO: Add hyper key as HRM
     keymap {
         compatible = "zmk,keymap";
-        default_layer { // ColemakDHm
-            bindings = <
-            /* TOP */
-            &kp Q          &kp W          &kp E          &kp R          &kp T
-            &kp Y          &kp U          &kp I          &kp O          &kp P
 
-            /* HOME */
-            &hml LCTRL A   &hml LALT S    &hml LGUI D    &hml LSHFT F   &kp G
-            &kp H          &hmr RSHFT J   &hmr RGUI K    &hmr LALT L    &hmr RCTRL SEMI
+        layer_0 {
+            display-name = "base";
+            bindings = <
+                /* Top: left / right */
+                &kp Q                     &kp W                     &kp F                     &kp P                     &kp B                       &kp J  &kp L  &kp U  &kp Y  &kp SQT
+                /* Home: left / right */
+                &hml LCTRL A              &hml LALT R               &hml LGUI S               &hml LSHFT T              &kp G                       &kp M  &hmr RSHFT N  &hmr RGUI E  &hmr LALT I  &hml LCTRL O
+                /* Bottom: left / right (includes outer keys) */
+                &kp Z                     &kp X                     &kp C                     &hml LS(LC(LALT)) D       &hml LA(LS(LC(LGUI))) V   &kp K                       &kp H  &kp COMMA  &hml LA(LS(LC(LALT))) DOT  &hml LA(LS(LC(LGUI))) SEMI  &qexcl  &kp TAB
+                /* Thumbs: left / right */
+                &lt UTIL SPACE            &lt NAV ESC               &sk LSHFT                   &kp BSPC  &lt NUM RET  &lt FUN DEL
+            >;
+        };
 
-            /* BOTTOM */
-            &kp TAB        &kp Z          &kp X          &hml MEH C      &hml HYP V      &kp B
-            &kp N          &hmr HYP M     &hmr_meh MEH COMMA            &dot_morph       &qexcl         &kp TAB
+        layer_1 {
+            display-name = "nav";
+            bindings = <
+                /* Top: left / right */
+                &trans                    &trans                    &trans                    &sl BASE                  &to GAME                    &trans  &kp HOME  &kp UP  &kp END  &kp PG_UP
+                /* Home: left / right */
+                &kp LCTRL                 &kp LALT                  &kp LGUI                  &kp LSHFT                 &trans                      &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &kp PG_DN
+                /* Bottom: left / right (includes outer keys) */
+                &kp LG(RBKT)              &trans                    &trans                    &kp LS(LC(LALT))          &kp LA(LS(LC(LGUI)))      &trans                      &trans  &kp TILDE  &trans  &kp FSLH  &kp LG(LBKT)  &trans
+                /* Thumbs: left / right */
+                &trans                    &trans                    &trans                      &kp RET  &kp BSPC  &kp DEL
+            >;
+        };
 
-            /* THUMBS */
-            &lt UTIL ESC   &lt NAV SPACE  &sk LSHFT
-            &kp RET        &lt NUM BSPC   &lt FUN DEL
+        layer_2 {
+            display-name = "num";
+            bindings = <
+                /* Top: left / right */
+                &kp PLUS                  &kp N7                    &kp N8                    &kp N9                    &kp STAR                    &trans  &kp LPAR  &kp RPAR  &trans  &trans
+                /* Home: left / right */
+                &kp N0                    &kp N4                    &kp N5                    &kp N6                    &kp EQUAL                   &trans  &kp LSHFT  &kp LGUI  &kp LALT  &kp LCTRL
+                /* Bottom: left / right (includes outer keys) */
+                &kp LPAR                  &kp MINUS                 &kp N1                    &kp N2                    &kp N3                    &kp FSLH                    &trans  &kp LA(LS(LC(LGUI)))  &kp LS(LC(LALT))  &trans  &trans  &kp RPAR
+                /* Thumbs: left / right */
+                &trans                    &kp DOT                   &kp SEMI                    &trans  &trans  &trans
             >;
         };
-        nav_layer { 
+
+        layer_3 {
+            display-name = "f keys";
             bindings = <
-            ___          ___          ___             ___             ___                ___           &kp HOME          &kp UP          &kp END       &kp PAGE_UP 
-            &kp LCTRL     &kp LALT     &kp LGUI       &kp LSHFT       ___                ___           &kp LEFT          &kp DOWN        &kp RIGHT     &kp PAGE_DOWN
-    BACK    ___           ___          &kp MEH         &kp HYP         ___                ___          &kp TILDE         ___             &kp FSLH      ___             FWD
-                                       ___            ___             ___                &kp RET       &kp BSPC          &kp DEL
-            >;
-        }; 
-        num_layer {
-            bindings = <
-            &kp PLUS     &kp N7       &kp N8          &kp  N9         &kp STAR           ___           ___               ___             ___           ___ 
-            &kp N0       &kp N4       &kp N5          &kp  N6         &kp EQUAL          ___           &kp LSHFT         &kp LGUI        &kp LALT      &kp LCTRL
-  &kp LPAR  &kp MINUS    &kp N1       &kp N2          &kp  N3         &kp FSLH           ___           &kp HYP           &kp MEH         ___           ___            &kp RPAR
-                                      ___             &kp  DOT        &kp SEMI           ___           ___               ___
+                /* Top: left / right */
+                &kp F12                   &kp F7                    &kp F8                    &kp F9                    &trans                      &trans  &trans  &trans  &trans  &trans
+                /* Home: left / right */
+                &kp F11                   &kp F4                    &kp F5                    &kp F6                    &trans                      &trans  &kp LSHFT  &kp LGUI  &kp LALT  &kp LCTRL
+                /* Bottom: left / right (includes outer keys) */
+                &trans                    &kp F10                   &kp F1                    &kp F2                    &kp F3                    &trans                      &trans  &kp LA(LS(LC(LGUI)))  &kp LS(LC(LALT))  &trans  &trans  &trans
+                /* Thumbs: left / right */
+                &trans                    &trans                    &trans                      &trans  &trans  &trans
             >;
         };
-        fun_layer {
+
+        layer_4 {
+            display-name = "media";
             bindings = <
-            &kp F12      &kp F7       &kp F8          &kp F9          ___                ___           ___               ___             ___           ___
-            &kp F11      &kp F4       &kp F5          &kp F6          ___                ___           &kp LSHFT         &kp LGUI        &kp LALT      &kp LCTRL 
-    ___     &kp F10      &kp F1       &kp F2          &kp F3          ___                ___           &kp HYP           &kp MEH         ___           ___             ___
-                                      ___             ___             ___                ___           ___               ___
+                /* Top: left / right */
+                &bt BT_SEL 0              &bt BT_SEL 1              &bt BT_SEL 2              &bt BT_CLR                &trans                      &trans  &kp C_BRI_UP  &kp C_VOL_UP  &trans  &trans
+                /* Home: left / right */
+                &kp LCTRL                 &kp LALT                  &kp LGUI                  &kp LSHFT                 &trans                      &trans  &kp C_BRI_DN  &kp C_VOL_DN  &trans  &trans
+                /* Bottom: left / right (includes outer keys) */
+                &trans                    &trans                    &trans                    &trans                    &kp LA(LS(LC(LGUI)))      &trans                      &trans  &trans  &trans  &trans  &trans  &trans
+                /* Thumbs: left / right */
+                &trans                    &trans                    &trans                      &trans  &trans  &kp C_MUTE
             >;
         };
-        util_layer {
+
+        layer_5 {
+            display-name = "game";
             bindings = <
-            &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2    &bt BT_CLR      ___                ___           ___               &kp C_VOL_UP    ___           ___
-            &kp LCTRL     &kp LALT     &kp LGUI       &kp LSHFT      ___                ___           ___                &kp C_VOL_DN    ___           ___ 
-    ___     ___          ___          ___             &kp HYP        ___                ___           ___               ___             ___           ___             ___
-                                      ___             ___             ___                ___           ___               &kp C_MUTE
+                /* Top: left / right */
+                &kp Q                     &kp N1                    &kp N2                    &kp N3                    &kp N4                      &none  &none  &none  &none  &none
+                /* Home: left / right */
+                &kp LSHFT                 &kp A                     &kp W                     &kp D                     &kp E                       &none  &none  &none  &none  &none
+                /* Bottom: left / right (includes outer keys) */
+                &kp LCTRL                 &kp Z                     &kp S                     &kp C                     &kp R                     &none                       &none  &none  &none  &none  &kp LALT  &none
+                /* Thumbs: left / right */
+                &kp SPACE                 &kp V                     &none                       &none  &none  &to BASE
             >;
         };
-        extra_layer_1 {
+
+        spare_layer_1 {
             status = "reserved";
             bindings = <
-            &none &none &none &none &none              &none &none &none &none &none
-            &none &none &none &none &none              &none &none &none &none &none
-    &none   &none &none &none &none &none              &none &none &none &none &none &none
-                          &none &none &none             &none &none &none
-            >;
-        };
-        extra_layer_2 {
-            status = "reserved";
-            bindings = <
-            &none &none &none &none &none              &none &none &none &none &none
-            &none &none &none &none &none              &none &none &none &none &none
-    &none   &none &none &none &none &none              &none &none &none &none &none &none
-                          &none &none &none             &none &none &none
+                &none &none &none &none &none &none &none &none &none &none
+                &none &none &none &none &none &none &none &none &none &none
+                &none &none &none &none &none &none &none &none &none &none &none &none
+                &none &none &none &none &none &none
             >;
         };
 
-        extra_layer_3 {
+        spare_layer_2 {
             status = "reserved";
             bindings = <
-            &none &none &none &none &none              &none &none &none &none &none
-            &none &none &none &none &none              &none &none &none &none &none
-    &none   &none &none &none &none &none              &none &none &none &none &none &none
-                          &none &none &none             &none &none &none
+                &none &none &none &none &none &none &none &none &none &none
+                &none &none &none &none &none &none &none &none &none &none
+                &none &none &none &none &none &none &none &none &none &none &none &none
+                &none &none &none &none &none &none
+            >;
+        };
+
+        spare_layer_3 {
+            status = "reserved";
+            bindings = <
+                &none &none &none &none &none &none &none &none &none &none
+                &none &none &none &none &none &none &none &none &none &none
+                &none &none &none &none &none &none &none &none &none &none &none &none
+                &none &none &none &none &none &none
+            >;
+        };
+
+        spare_layer_4 {
+            status = "reserved";
+            bindings = <
+                &none &none &none &none &none &none &none &none &none &none
+                &none &none &none &none &none &none &none &none &none &none
+                &none &none &none &none &none &none &none &none &none &none &none &none
+                &none &none &none &none &none &none
             >;
         };
 
 
     };
 };
+
     
 /* --------------------------------- combos --------------------------------- */
 /*
